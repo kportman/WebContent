@@ -1,0 +1,21 @@
+
+
+a {
+	text-decoration: none;
+	color: white;
+	font-family: "Neuzit Heavy", sans-serif;
+	
+}
+
+a:hover { 
+	text-decoration: none;
+	color: white;
+}
+
+.wrap {
+	
+	background-color: #fec774;
+	padding: 2em;
+	border-radius: 1.5em;
+	border: 0.2em solid #000000;
+}

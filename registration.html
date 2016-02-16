@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<script type="text/javascript" src="angular.min.js" >  </script>
+<script type="text/javascript" src="jquery-1.11.3.min.js" >  </script>
+<script type="text/javascript" src="appController.js" >  </script>
+</head>
+<body>
+	<div ng-app="funItaly" ng-controller="regCont">
+			 <label> Registration:  </label>
+			 <br>
+			 <br>
+			 <label> Username:  </label>
+			 <input ng-model="username" type="text" id="userReg">
+			 <mark>{{userErr}}</mark>
+			 <br>
+			 <label> Password:  </label>
+			 <input ng-model="password" type="text" id="passReg">
+			 <mark>{{passErr}}</mark>
+			 <br>
+			 <label> Nickname:  </label>
+			 <input ng-model="nickname" type="text" id="nickReg">
+			 <mark>{{nickErr}}</mark>
+			 <br>
+			 <label> Description:  </label>
+			 <textarea ng-model="description" id="descrReg"></textarea>
+			 <mark>{{descErr}}</mark>
+			 <br>
+			 <label> Photo link:  </label>
+			 <input ng-model="imageLink" type="text" id="linkReg">
+			 <mark>{{photoErr}}</mark>
+			 <br>
+			 <button ng-click="registration()" type="submit" id="sign-up-reg">Sign-up</button>
+		 </div>
+</body>
+</html>

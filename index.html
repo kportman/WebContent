@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!-- changed to utf-8 -->
+<meta name="viewport" content="width=device-width , initial-scale=1" >
+<title>FunItaly</title>
+<script type="text/javascript" src="angular.min.js" >  </script>
+<script type="text/javascript" src="jquery-1.11.3.min.js" >  </script>
+<script type="text/javascript" src="appController.js" >  </script>
+
+<!-- bootstrap imports -->
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Add css with bootstrap -->
+<link type="text/css" rel="stylesheet"  href="css/bootstrap.min.css">
+<!--<link type="text/css" rel="stylesheet"  href="css/custom.css">-->
+<link href="css/index.css" rel='stylesheet' type='text/css'/>
+</head>
+<body background="images/Venezia-tourism-guide.jpg">
+	
+		<div class="container-fluid" >
+			
+			<div ng-controller="signCont" ng-app="funItaly"> 
+				 	
+				 	<div class="row">
+				 	
+				 		 <div class="col-xs-4"> </div>
+				 		
+				 		 <div class="col-xs-4">
+				 		 	<div class="wrap">
+								 <form>
+								 	 
+								 	 <br>
+									 <br>
+								 	 
+								 	 <img src="images/logo.png"/>
+								 	 
+									 <br>
+									 <br>
+									 <label> Sign in:  </label>
+									 
+									 <br>
+									 <br>
+									 
+									 <div class="input-group">
+									 	<input ng-model="username" type="text" class="form-control" placeholder="Your Username" aria-describedby="basic-addon2" id="user">
+									 </div>
+									 
+									 <br>
+									 <div class="input-group">
+										<input ng-model="password" type="text" class="form-control" placeholder="Your Password" aria-describedby="basic-addon2" id="pass">
+									 </div>
+									 <br>
+									 <button ng-click="login()" type="submit" class="btn btn-warning" id="sign-in"> Sign in </button>
+									 <br>
+									 <div>{{wrongUserOrPass}}</div>
+									 <br>
+									 <label> Registration:  </label>
+									 <br>
+									 <div>
+									 	<button type="submit" class="btn btn-warning" id="sign-up" > <a href="registration.html"> Sign up </a> </button>
+								 	 </div>
+								 </form>
+						 	</div>
+						 </div>
+						 <div class="col-xs-4"> </div>
+						 
+					 </div>
+					
+				</div>
+		</div>
+</body>
+</html>

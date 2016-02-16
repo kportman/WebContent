@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1255">
+<title>Newest questions</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="appController.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div ng-app="funItaly" ng-controller="newestCont">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Logo -->
+				<div class="navbar-header">
+					<a href="main.html" class="navbar-brand">FunItaly</a>
+				</div>
+				
+				<!-- Menu items -->
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="main.html">Ask a question</a></li>
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="newest.html">Newest</a></li>
+						<li><a href="existing.html">Existing</a></li>
+						<li><a href="byTopic.html">By topic</a></li>
+						<li><a href="index.html">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav> 
+	
+	<button ng-click="display()">display questions</button>
+	<br>
+	
+	<div ng-repeat="q in questions">
+		<fieldset>
+			<span>{{q.time}}</span>
+			<span>{{q.topic}}</span>
+			<a href="profile.html#{{q.nickname}}"><strong>q.nickname</strong></a>
+			<span>{{q.rating}}</span>
+			<div>{{q.text}}</div>
+			<button ng-click="answer()" ng-show="clickToAns">Answer</button>
+		</fieldset>	
+		<!-- New Reply -->
+		<fieldset ng-show="writeReply">
+			<textarea ng-model="qAnswer" placeholder="Write your answer here..."></textarea>
+			<button ng-click="publish()">Publish</button>
+		</fieldset>
+		<div ng-show="showReply">{{qAnswer}}</div>
+		<br>
+	</div>
+	
+	
+</div>
+</body>
+</html>
