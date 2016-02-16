@@ -44,20 +44,29 @@
 	
 	<div ng-repeat="q in questions">
 		<fieldset>
-			<span>{{q.time}}</span>
-			<span>{{q.topic}}</span>
-			<a href="profile.html"><strong>q.nickname</strong></a>
-			<span>{{q.rating}}</span>
+			<span>Topic: {{q.topic}}</span>
+			<span>Votes: {{q.votes}}</span>
+			<span>Time: {{q.time}}</span>
+			<a href="profile.html"><strong>{{q.nickname}}</strong></a>
+			<span>Rating: {{q.rating}}</span>
 			<div>{{q.text}}</div>
-			<button ng-click="answer()" ng-show="clickToAns">Answer</button>
+		<!--	<button ng-click="answer($index)" ng-show="clickToAns">Answer</button> -->
 		</fieldset>	
 		<!-- New Reply -->
-		<fieldset ng-show="writeReply">
-			<textarea ng-model="qAnswer" placeholder="Write your answer here..."></textarea>
-			<button ng-click="publish()">Publish</button>
+		<fieldset ng-show="hide">
+			<textarea ng-model="q.qAnswer" placeholder="Write your answer here..."></textarea>
+			<button ng-click="publish(q.id, q.nickname, q.qAnswer) ;hide=!hide;show=!show">Publish</button>
 		</fieldset>
-		<div ng-show="showReply">{{qAnswer}}</div>
+		<div ng-show="show" >{{q.qAnswer}}</div>
 		<br>
+		<button ng-click="getAnswers(q.id)">display answers</button>
+		<div ng-repeat="a in answers">
+			<span>Time: {{a.time}}</span>
+			<a href="profile.html"><strong>{{a.nickname}}</strong></a>
+			<span>Votes: {{a.votes}}</span>
+			<div>{{a.text}}</div>
+		</div>
+		
 	</div>
 	
 	

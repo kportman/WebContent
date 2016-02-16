@@ -111,15 +111,14 @@ app.controller('profileCont', ['$scope', '$http',
                            	
     }]);//end profileCont controller
 
-app.controller('newestCont', ['$scope', '$http',
-                              	function ($scope, $http){
+app.controller('newestCont', ['$scope', '$http', 'appFactory',
+                              	function ($scope, $http, appFactory){
                       $scope.questions = {};
-                      $scope.writeReply = false;
-                      $scope.showReply = false;
-                      $scope.clickToAns = true;
-                      $scope.qAnswer = "";
+                      $scope.answers = {};
                       
-                      
+                      $scope.show = false;
+                      $scope.hide = true;
+
                       $scope.display = function(){
                     	  alert("I'm in display function");
 	                      $http({ 
@@ -130,16 +129,56 @@ app.controller('newestCont', ['$scope', '$http',
 	      				}).success( function(data) {
 	      					$scope.questions = data;
 	      				});
-                     }   
+                      }
+                      $scope.getAnswers = function(id){
+	                      $http({ 
+		      					method: 'GET',
+		      					url: '/FunItaly/answer',
+		      					params: { qid: id },
+		      					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		      				}).success( function(data) {
+		      					$scope.answers = data;
+		      				});
+                      }    
+                        
                       
-                      $scope.answer = function(){
-                    	  $scope.writeReply = true;
-                    	  $scope.clickToAns = false;
+                   
+                      $scope.publish = function(qid, nick, ans){
+                    	 // $scope.writeReply = false;
+                    	 // $scope.showReply = true;
+                    	  //$scope.questins[index] = "";
+                    	  appFactory.publish($http,qid, nick, ans);
                     	  
                       }
-                      $scope.publish = function(){
-                    	  $scope.writeReply = false;
-                    	  $scope.showReply = true;
-                      }
-                                          	
        }]);//end newestCont controller
+
+app.factory("appFactory", function() {
+
+	return {
+		publish: function($http,qid, nick, ans) {
+      	  $http({
+   			method:'POST',
+   			url:"/FunItaly/answer",
+   			transformRequest: function(arr) {
+   				
+   				var string = [];
+   				for( var i in arr )
+   				{
+   					string.push(encodeURIComponent(i) + "=" + encodeURIComponent(arr[i]));
+   				}
+   				return string.join("&");
+   			},
+   			data: { id: qid, nickname: nick, answer: ans },
+   			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+   		}).success( function(info){
+   			if(info == "Ok")
+			{
+   				alert("Ok");
+   				
+			}
+   		});// end success 
+
+		}
+	};
+});
+

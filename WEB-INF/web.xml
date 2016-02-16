@@ -54,6 +54,16 @@
     <servlet-name>getQuestionsServlet</servlet-name>
     <url-pattern>/getQuestions</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>answerServlet</display-name>
+    <servlet-name>answerServlet</servlet-name>
+    <servlet-class>app.servlets.answerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>answerServlet</servlet-name>
+    <url-pattern>/answer</url-pattern>
+  </servlet-mapping>
   <listener>
     <listener-class>app.listeners.FunItalyContextListener</listener-class>
   </listener>

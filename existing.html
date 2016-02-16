@@ -39,6 +39,27 @@
 		</div>
 	</nav> 
 	
+	<button ng-click="display()">display questions</button>
+	<br>
+	
+	<div ng-repeat="q in questions">
+		<fieldset>
+			<span>Topic: {{q.topic}}</span>
+			<span>id: {{q.id}}</span>
+			<span>Time: {{q.time}}</span>
+			<a href="profile.html"><strong>{{q.nickname}}</strong></a>
+			<span>Rating: {{q.rating}}</span>
+			<div>{{q.text}}</div>
+		<!--	<button ng-click="answer($index)" ng-show="clickToAns">Answer</button> -->
+		</fieldset>	
+		<!-- New Reply -->
+		<fieldset>
+			<textarea ng-model="q.qAnswer" placeholder="Write your answer here..."></textarea>
+			<button ng-click="publish(q.id, q.nickname, q.qAnswer)">Publish</button>
+		</fieldset>
+		<div ng-show="showReply">{{qAnswer}}</div>
+		<br>
+	</div>
 	
 	</div>
 </body>
