@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="windows-1255">
-<title>Profile</title>
+<title>Leaderboard</title>
 <script type="text/javascript" src="angular.min.js"></script>
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="appController.js"></script>
@@ -15,31 +15,44 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- CSS -->
+<link href="css/index.css" rel='stylesheet' type='text/css'/>
+
 </head>
-<body>
-<div ng-controller="profileCont" ng-app="funItaly">	
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<!-- Logo -->
-			<div class="navbar-header">
-				<a href="main.html" class="navbar-brand">FunItaly</a>
-			</div>
-			
-			<!-- Menu items -->
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="main.html">Ask a question</a></li>
-					<li><a href="profile.html">Profile</a></li>
-					<li><a href="newest.html">Newest</a></li>
-					<li><a href="existing.html">Existing</a></li>
-					<li><a href="byTopic.html">By topic</a></li>
-					<li><a href="index.html">Logout</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav> 
+<body background="images/italian_cafe.jpg" style="background-repeat:repeat">
+	<div ng-app="funItaly" ng-controller="profileCont">
 		
-		<ul>
+		<div class="container-fluid">
+			<div class="row-xs-4"> 
+				<nav class="navbar navbar-new" role="navigation">
+				    
+				        <!-- logo -->
+				        <div class="navbar-header">
+				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1"></button>
+				            <a class="navbar-brand" href="main.html"><img src="images/logomin.png" alt="FunItaly" height=225% width=50% ></a>
+				        </div>
+				        <!-- menu -->
+				        <div class="collapse navbar-collapse navbar-left" id="navbar1">
+				            <ul class="nav navbar-nav" id="nav1">
+				                <li><a href="main.html">Ask a question</a></li>
+				                <li class="divider-vertical"></li>
+								<li  class="active"><a href="profile.html">Leaderboard</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="newest.html">Newest</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="existing.html">Existing</a> </li>
+								<li class="divider-vertical"></li>
+								<li><a href="byTopic.html">By topic</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="index.html">Logout</a></li>
+				            </ul>
+				        </div>
+				</nav>
+			</div>
+
+		
+		<ul class="wrap">
 			<li>Photo: <img ng-src="{{photoLink}}" alt="{{nickname}}"></li>
 			<li>Nickname: {{nickname}}</li>
 			<li>Description: {{description}}</li>

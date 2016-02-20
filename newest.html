@@ -21,14 +21,9 @@
 
 </head>
 <body background="images/italian_cafe.jpg" style="background-repeat:repeat">
-
-	
-	
-	<div ng-app="funItaly" ng-controller="newestCont">
+	<div ng-app="funItaly" ng-controller="newestCont" ng-init="display('newest', 0)">
 		
 		<div class="container-fluid">
-		
-		
 			<div class="row-xs-4"> 
 				<nav class="navbar navbar-new" role="navigation">
 				    
@@ -42,7 +37,7 @@
 				            <ul class="nav navbar-nav" id="nav1">
 				                <li><a href="main.html">Ask a question</a></li>
 				                <li class="divider-vertical"></li>
-								<li><a href="profile.html">Profile</a></li>
+								<li><a href="profile.html">Leaderboard</a></li>
 								<li class="divider-vertical"></li>
 								<li class="active"><a href="newest.html">Newest</a></li>
 								<li class="divider-vertical"></li>
@@ -55,34 +50,11 @@
 				        </div>
 				</nav>
 			</div>
-		
-				<!--
-				<nav class="navbar navbar-default">
-					
-						<!-- Logo -->
-				<!--	<div class="navbar-header">
-							<a href="main.html" class="navbar-brand">FunItaly</a>
-						</div>
-						
-						<!-- Menu items -->
-				<!--	<div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="main.html">Ask a question</a></li>
-								<li><a href="profile.html">Profile</a></li>
-								<li><a href="newest.html">Newest</a></li>
-								<li><a href="existing.html">Existing</a></li>
-								<li><a href="byTopic.html">By topic</a></li>
-								<li><a href="index.html">Logout</a></li>
-							</ul>
-						</div>
-					
-				</nav> -->
 			
-			<div class="row-xs-4"> 
-			
-				<button ng-click="display()" class="btn btn-warning">Display questions</button>
-				<br>
-				
+			<div class="row-xs-4">  
+				<button ng-click="prev('newest')" class="btn btn-warning">prev</button>
+				<button ng-click="next('newest')" class="btn btn-warning">next</button>
+				<br><br>	
 			</div>
 			
 			<div class="row-xs-4"> 
@@ -90,10 +62,11 @@
 				<div class="col-xs-2"></div> 
 				
 				<div class="col-xs-8"> 
+				
 					<div ng-repeat="q in questions" class="wrap">
 						<fieldset class="wrap2">		
 							
-							<a href="profile.html">Asked by: <strong>{{q.nickname}}</strong></a>
+							<span>Asked by: <a href="profile.html"><strong>{{q.nickname}}</strong></a></span>
 							<span>On: {{q.time}}</span>
 							<br></br>
 							<span><span class="Topic">{{q.topic}}</span></span>
@@ -101,28 +74,46 @@
 							<div>{{q.text}}</div>
 							<br></br>
 							<span>Votes: {{q.votes}}</span>
-							
 							<span>Rating: {{q.rating}}</span>
+							
+							<!-- votes -->
+							<div class="row-xs-4">  
+							    <br>
+								<button ng-click="voteQuesUp(q.id)" class="btn btn-warning">Vote up</button>
+								<button ng-click="voteQuesDown(q.id)" class="btn btn-warning">Vote down</button>
+								<br><br>	
+							</div>
 							
 						<!--	<button ng-click="answer($index)" ng-show="clickToAns">Answer</button> -->
 						</fieldset>	
 						<!-- New Reply -->
-						<div ng-show="show" >{{q.qAnswer}}</div>
+						<!--  <div ng-show="show" >{{q.qAnswer}}</div> -->
 						<br>
-						<button ng-click="getAnswers(q.id)" class="btn btn-warning">display answers</button>
-						<br></br>
-						<div ng-repeat="a in answers" class="wrap3">						
-							<a href="profile.html">Answered by <strong>{{a.nickname}}</strong></a>
+					<!--  	<button ng-click="getAnswers(q.id, $index)" class="btn btn-warning">display all answers</button> -->
+						
+						<div ng-repeat="a in q.answers" class="wrap3">Answered by: 					
+							<a href="profile.html"> <strong>{{a.nickname}}</strong></a>
 							<span>On: {{a.time}}</span>
 							<br></br>
 							<div>{{a.text}}</div>
 							<br></br>
 							<span>Votes: {{a.votes}}</span>
+							
+							<!-- votes -->
+							<div class="row-xs-4">  
+								<br>
+								<button ng-click="voteAnsUp(q.id,a.id)" class="btn btn-warning">Vote up</button>
+								<button ng-click="voteAnsDown(q.id,a.id)" class="btn btn-warning">Vote down</button>
+								<br><br>	
+							</div>
+							
 						</div>
+						<br></br>
+						<button ng-click="hide=!hide; q.answeredNow=true;show=!show" ng-show ="show" class="btn btn-warning">Answer Question</button>
 						<br></br>
 						<fieldset ng-show="hide" >
 							<textarea ng-model="q.qAnswer" class="form-control" rows="5" placeholder="Write your answer here..."></textarea>
-							<button ng-click="publish(q.id, q.nickname, q.qAnswer) ;hide=!hide;show=!show" class="btn btn-warning">Publish</button>
+							<button ng-click="publish(q.id, q.qAnswer, q.answeredNow, $index) ; q.qAnswer=''; q.answeredNow=false;hide=!hide" class="btn btn-warning">Publish</button>
 						</fieldset>
 						
 					</div>
@@ -131,8 +122,13 @@
 				<div class="col-xs-2"></div> 
 				
 			</div>
-			
+	
 		</div>
+			<div class="row-xs-4">  
+				<button ng-click="prev('newest')" class="btn btn-warning">prev</button>
+				<button ng-click="next('newest')" class="btn btn-warning">next</button>
+				<br><br>	
+			</div>
 	</div>
 </body>
 </html>

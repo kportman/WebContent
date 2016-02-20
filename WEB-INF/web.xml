@@ -54,7 +54,7 @@
     <servlet-name>getQuestionsServlet</servlet-name>
     <url-pattern>/getQuestions</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>answerServlet</display-name>
     <servlet-name>answerServlet</servlet-name>
@@ -63,6 +63,26 @@
   <servlet-mapping>
     <servlet-name>answerServlet</servlet-name>
     <url-pattern>/answer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ratingServlet</display-name>
+    <servlet-name>ratingServlet</servlet-name>
+    <servlet-class>app.servlets.ratingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ratingServlet</servlet-name>
+    <url-pattern>/rating</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>byTopicServlet</display-name>
+    <servlet-name>byTopicServlet</servlet-name>
+    <servlet-class>app.servlets.byTopicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>byTopicServlet</servlet-name>
+    <url-pattern>/byTopic</url-pattern>
   </servlet-mapping>
   <listener>
     <listener-class>app.listeners.FunItalyContextListener</listener-class>
