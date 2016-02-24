@@ -61,8 +61,8 @@
 					<button ng-click="bringQByTopic(topic);prevNextShow=!prevNextShow" class="Topic btn btn-warning">Topic: {{topic}}</button>
 					<br><br>
 					<div ng-show="prevNextShow" class="row-xs-4">  
-						<button ng-click="prev('existing')" class="btn btn-warning">prev</button>
-						<button ng-click="next('existing')" class="btn btn-warning">next</button>
+						<button ng-click="prev(topic)" class="btn btn-warning">prev</button>
+						<button ng-click="next(topic)" class="btn btn-warning">next</button>
 						<br><br>	
 					</div>
 					<div ng-repeat="q in questions">
@@ -81,8 +81,8 @@
 							<!-- votes -->
 							<div class="row-xs-4">  
 							    <br>
-								<button ng-click="voteQuesUp(q.id)" class="btn btn-warning">Vote up</button>
-								<button ng-click="voteQuesDown(q.id)" class="btn btn-warning">Vote down</button>
+								<button ng-click="voteQuesUp(q.id,q.nickname)" class="btn btn-warning">Vote up</button>
+								<button ng-click="voteQuesDown(q.id,q.nickname)" class="btn btn-warning">Vote down</button>
 								<br><br>	
 							</div>
 							
@@ -104,8 +104,8 @@
 							<!-- votes -->
 							<div class="row-xs-4">  
 								<br>
-								<button ng-click="voteAnsUp(q.id,a.id)" class="btn btn-warning">Vote up</button>
-								<button ng-click="voteAnsDown(q.id,a.id)" class="btn btn-warning">Vote down</button>
+								<button ng-click="voteAnsUp(q.id,a.id,a.nickname)" class="btn btn-warning">Vote up</button>
+								<button ng-click="voteAnsDown(q.id,a.id,a.nickname)" class="btn btn-warning">Vote down</button>
 								<br><br>	
 							</div>
 							
@@ -119,8 +119,8 @@
 						</fieldset>
 					</div>
 					<div ng-show="prevNextShow" class="row-xs-4">  
-						<button ng-click="prev('existing')" class="btn btn-warning">prev</button>
-						<button ng-click="next('existing')" class="btn btn-warning">next</button>
+						<button ng-click="prev(topic)" class="btn btn-warning">prev</button>
+						<button ng-click="next(topic)" class="btn btn-warning">next</button>
 						<br><br>	
 					</div>
 				</div>

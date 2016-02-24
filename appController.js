@@ -105,9 +105,19 @@ app.controller('mainCont', ['$scope', '$http',
 
 app.controller('profileCont', ['$scope', '$http',
                            	function ($scope, $http){
-                    $scope.nickname =  window.localStorage.nickname;
-                    $scope.description =  window.localStorage.description;
-                    $scope.photoLink = window.localStorage.photoLink;      	
+					    
+					$scope.users ={};   
+					
+					$scope.initBoard = function(){
+						$http({ 
+	         				   method: 'GET',
+	         				   url: '/FunItaly/profile',
+	         				   params: { get: "allUsers" },
+	         				   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	         				}).success(function(data){
+	         					$scope.users = data;
+	         					});
+					}
                            	
     }]);//end profileCont controller
 
@@ -134,20 +144,20 @@ app.controller('byTopicCont', ['$scope', '$http', 'appFactory',
          					$scope.topics = data;
          					});
                     }
-                    $scope.voteQuesUp = function(qid){
+                    $scope.voteQuesUp = function(qid,nick){
                   	  //check if user published this question
-                  	  appFactory.vote($http, qid, 1, "question", 1);
+                  	  appFactory.vote($http, qid, 1, "question", 1,nick);
                     }
-                    $scope.voteQuesDown = function(qid){
-                  	  appFactory.vote($http, qid, 1, "question", -1);
-                    }
-                    
-                    $scope.voteAnsUp = function(qid, aid){
-                  	  appFactory.vote($http, qid, aid, "answer", 1);
+                    $scope.voteQuesDown = function(qid,nick){
+                  	  appFactory.vote($http, qid, 1, "question", -1,nick);
                     }
                     
-                    $scope.voteAnsDown = function(qid, aid){
-                  	  appFactory.vote($http, qid, aid, "answer", -1);
+                    $scope.voteAnsUp = function(qid, aid,nick){
+                  	  appFactory.vote($http, qid, aid, "answer", 1,nick);
+                    }
+                    
+                    $scope.voteAnsDown = function(qid, aid,nick){
+                  	  appFactory.vote($http, qid, aid, "answer", -1,nick);
                     }
                     
                     $scope.prev = function(type){
@@ -192,20 +202,20 @@ app.controller('existingCont', ['$scope', '$http', 'appFactory',
                     $scope.hide = false;
                     $scope.offset = 0;
                     
-                    $scope.voteQuesUp = function(qid){
+                    $scope.voteQuesUp = function(qid,nick){
                   	  //check if user published this question
-                  	  appFactory.vote($http, qid, 1, "question", 1);
+                  	  appFactory.vote($http, qid, 1, "question", 1,nick);
                     }
-                    $scope.voteQuesDown = function(qid){
-                  	  appFactory.vote($http, qid, 1, "question", -1);
-                    }
-                    
-                    $scope.voteAnsUp = function(qid, aid){
-                  	  appFactory.vote($http, qid, aid, "answer", 1);
+                    $scope.voteQuesDown = function(qid,nick){
+                  	  appFactory.vote($http, qid, 1, "question", -1,nick);
                     }
                     
-                    $scope.voteAnsDown = function(qid, aid){
-                  	  appFactory.vote($http, qid, aid, "answer", -1);
+                    $scope.voteAnsUp = function(qid, aid,nick){
+                  	  appFactory.vote($http, qid, aid, "answer", 1,nick);
+                    }
+                    
+                    $scope.voteAnsDown = function(qid, aid,nick){
+                  	  appFactory.vote($http, qid, aid, "answer", -1,nick);
                     }
                     
                     $scope.prev = function(type){
@@ -250,20 +260,20 @@ app.controller('newestCont', ['$scope', '$http', 'appFactory',
                       $scope.hide = false;
                       $scope.offset = 0;
                       
-                      $scope.voteQuesUp = function(qid){
+                      $scope.voteQuesUp = function(qid,nick){
                     	  //check if user published this question
-                    	  appFactory.vote($http, qid, 1, "question", 1);
+                    	  appFactory.vote($http, qid, 1, "question", 1,nick);
                       }
-                      $scope.voteQuesDown = function(qid){
-                    	  appFactory.vote($http, qid, 1, "question", -1);
-                      }
-                      
-                      $scope.voteAnsUp = function(qid, aid){
-                    	  appFactory.vote($http, qid, aid, "answer", 1);
+                      $scope.voteQuesDown = function(qid,nick){
+                    	  appFactory.vote($http, qid, 1, "question", -1,nick);
                       }
                       
-                      $scope.voteAnsDown = function(qid, aid){
-                    	  appFactory.vote($http, qid, aid, "answer", -1);
+                      $scope.voteAnsUp = function(qid, aid,nick){
+                    	  appFactory.vote($http, qid, aid, "answer", 1,nick);
+                      }
+                      
+                      $scope.voteAnsDown = function(qid, aid,nick){
+                    	  appFactory.vote($http, qid, aid, "answer", -1,nick);
                       }
                       
                       $scope.prev = function(type){
@@ -329,7 +339,7 @@ app.factory("appFactory", function() {
 
 		},//end publish
 		
-		vote: function($http, qid, aid, type, upOrDown) {
+		vote: function($http, qid, aid, type, upOrDown,nick) {
 	      	  $http({
 	   			method:'POST',
 	   			url:"/FunItaly/rating",
@@ -342,7 +352,7 @@ app.factory("appFactory", function() {
 	   				}
 	   				return string.join("&");
 	   			},
-	   			data: { voteType: type, vote: upOrDown, quesID: qid, ansID: aid },
+	   			data: { voteType: type, vote: upOrDown, quesID: qid, ansID: aid, nickname: nick },
 	   			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	   		}).success( function(info){
 	   			if(info == "Ok")
